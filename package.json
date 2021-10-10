@@ -4,20 +4,26 @@
 	"description": "",
 	"version": "0.0.1",
 	"engines": {
-		"vscode": "^1.61.0"
+		"vscode": "^1.60.0"
 	},
 	"categories": [
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:deprintify.helloWorld"
+		"onCommand:deprintify.deprintify"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "deprintify.helloWorld",
-				"title": "Hello World"
+				"command": "deprintify.deprintify",
+				"title": "Deprintify"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "deprintify.deprintify",
+				"key": "alt+d"
 			}
 		]
 	},

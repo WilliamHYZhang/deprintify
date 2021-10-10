@@ -13,12 +13,20 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('deprintify.helloWorld', () => {
+	let disposable = vscode.commands.registerTextEditorCommand('deprintify.deprintify', (textEditor, edit) => {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from deprintify!');
-	});
+		if (textEditor.document.languageId !== 'python') return;
+		const lines = textEditor.document.getText(textEditor.selection).split('\n');
+		const deprintified = lines.map(line => {
+			if (!line.includes(' = ')) return line;
+			return line + `\nprint('${line.split(' = ')[0]} is now:', ${line.split(' = ')[0]})\n`;
+		}).join('');
 
+		textEditor.edit(editBuilder => {
+			editBuilder.replace(textEditor.selection, deprintified);
+		});
+	});
 	context.subscriptions.push(disposable);
 }
 
