@@ -21,9 +21,9 @@ Highlight => `Alt+D` =>
 a = 5
 print('a is now:', a)
 b = 2
-print('b is now:', a)
+print('b is now:', b)
 c = a + b
-print('c is now:', a)
+print('c is now:', c)
 b = 'hello world'
-print('b is now:', a)
+print('b is now:', b)
 ```
